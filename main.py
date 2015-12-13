@@ -25,6 +25,6 @@ def extract():
 
 if __name__ == '__main__':
     from os import environ
-    port=environ.get("PORT", 8080)
-    print 'port', port 
+    port=int(environ.get("PORT", 8080))
+    print 'port', port
     app.run(debug=False, host='0.0.0.0', port=port)
