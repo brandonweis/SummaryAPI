@@ -1,6 +1,7 @@
 from flask import Flask, request,jsonify
 from goose import Goose
 from summary import Summary # from filename import Classname
+import os
 
 
 app = Flask(__name__)
@@ -18,4 +19,6 @@ def extract():
     return jsonify(summarised_article.get_result())
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    debug = False if port else True
+    app.run(host='0.0.0.0', port=port, debug=debug)
