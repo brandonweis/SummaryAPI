@@ -12,7 +12,8 @@ def extract():
     g = Goose()
     print 'url', url
     article = g.extract(url=url)
-    print 'article', article
+    print 'article title', article.title
+    print 'article text', article.cleaned_text
     # response = {'title' : article.title , 'text' : article.cleaned_text}
     # return jsonify(response)
     summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
