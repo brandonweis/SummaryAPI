@@ -10,6 +10,7 @@ app = Flask(__name__)
 def extract():
     url = request.args.get('url')
     g = Goose()
+    print 'url', url
     article = g.extract(url=url)
     print 'article', article
     # response = {'title' : article.title , 'text' : article.cleaned_text}
