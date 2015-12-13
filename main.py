@@ -13,12 +13,12 @@ def extract():
     print 'url', url
     article = g.extract(url=url)
     print 'article title', article.title
-    print 'article meta', article.meta_description
+    # print 'article meta', article.meta_description
     # print 'article text', article.cleaned_text
     # response = {'title' : article.title , 'text' : article.cleaned_text}
     # return jsonify(response)
     summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
-    summarised_article.print_result()
+    summarised_article.print_result() if article.cleaned_text else {}
     return jsonify(summarised_article.get_result())
 #
 # if __name__ == "__main__":
