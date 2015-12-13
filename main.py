@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/api/v1/extract')
 def extract():
     url = request.args.get('url')
-    g = Goose()
+    g = Goose({'browser_user_agent': 'Mozilla'})
     print 'url', url
     article = g.extract(url=url)
     print 'article title', article.title
