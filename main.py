@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template,jsonify
+from flask import Flask, request,jsonify
 from goose import Goose
 from summary import Summary # from filename import Classname
 
