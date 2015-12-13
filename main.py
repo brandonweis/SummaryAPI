@@ -13,6 +13,7 @@ def extract():
     print 'url', url
     article = g.extract(url=url)
     print 'article title', article.title
+    print 'article meta', article.meta_description
     print 'article text', article.cleaned_text
     # response = {'title' : article.title , 'text' : article.cleaned_text}
     # return jsonify(response)
