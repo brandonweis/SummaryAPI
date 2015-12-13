@@ -17,8 +17,12 @@ def extract():
     summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
     summarised_article.print_result()
     return jsonify(summarised_article.get_result())
+#
+# if __name__ == "__main__":
+#     port = int(os.environ.get("PORT", 8080))
+#     debug = False if port else True
+#     app.run(host='0.0.0.0', port=port, debug=debug)
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    debug = False if port else True
-    app.run(host='0.0.0.0', port=port, debug=debug)
+if __name__ == '__main__':
+    from os import environ
+    app.run(debug=False, port=environ.get("PORT", 8080), processes=2)
