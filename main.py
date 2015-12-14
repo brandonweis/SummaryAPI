@@ -14,16 +14,16 @@ def extract():
     # print 'url', url
     # article = g.extract(url=url)
     # summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
-
+    #
     article = Article(url)
     article.download()
     article.parse()
-    # print url
     # print article.title
     # print article.text
     summarised_article = Summary({'title' : article.title , 'content' : article.text})
-    summarised_article.print_result() if article.text else {}
-    return jsonify(summarised_article.get_result())
+    # summarised_article.print_result() if article.text else {}
+    return jsonify(**summarised_article.get_result())
+    # return article.text
 #
 # if __name__ == "__main__":
 #     port = int(os.environ.get("PORT", 8080))
@@ -33,5 +33,6 @@ def extract():
 if __name__ == '__main__':
     from os import environ
     port=int(environ.get("PORT", 8080))
-    print 'port', port
-    app.run(debug=False, host='0.0.0.0', port=port)
+    print port
+    app.run(debug=True, host='0.0.0.0', port=port)
+    # port = int(os.environ.get('PORT', 5000)) app.run(host='0.0.0.0', port=port)
