@@ -2,6 +2,7 @@ from flask import Flask, request,jsonify
 from goose import Goose
 from summary import Summary # from filename import Classname
 import os
+from newspaper import Article
 
 
 app = Flask(__name__)
@@ -9,16 +10,19 @@ app = Flask(__name__)
 @app.route('/api/v1/extract')
 def extract():
     url = request.args.get('url')
-    g = Goose({'browser_user_agent': 'Mozilla'})
-    print 'url', url
-    article = g.extract(url=url)
-    print 'article title', article.title
-    # print 'article meta', article.meta_description
-    # print 'article text', article.cleaned_text
-    # response = {'title' : article.title , 'text' : article.cleaned_text}
-    # return jsonify(response)
-    summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
-    summarised_article.print_result() if article.cleaned_text else {}
+    # g = Goose({'browser_user_agent': 'Mozilla'})
+    # print 'url', url
+    # article = g.extract(url=url)
+    # summarised_article = Summary({'title' : article.title , 'content' : article.cleaned_text})
+
+    article = Article(url)
+    article.download()
+    article.parse()
+    # print url
+    # print article.title
+    # print article.text
+    summarised_article = Summary({'title' : article.title , 'content' : article.text})
+    summarised_article.print_result() if article.text else {}
     return jsonify(summarised_article.get_result())
 #
 # if __name__ == "__main__":
